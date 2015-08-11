@@ -1,6 +1,10 @@
 *.iml
 target
 .idea
+.classpath
+.project
+.settings/
 build
 .gradle
 out
+/bin/

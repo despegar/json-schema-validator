@@ -22,6 +22,7 @@ package com.github.fge.jsonschema.cfg;
 import com.github.fge.Thawed;
 import com.github.fge.jsonschema.SchemaVersion;
 import com.github.fge.jsonschema.core.exceptions.JsonReferenceException;
+import com.github.fge.jsonschema.core.load.configuration.LoadingConfigurationBuilder;
 import com.github.fge.jsonschema.core.messages.JsonSchemaSyntaxMessageBundle;
 import com.github.fge.jsonschema.core.ref.JsonRef;
 import com.github.fge.jsonschema.library.DraftV3Library;
@@ -76,6 +77,9 @@ public final class ValidationConfigurationBuilder
      */
     Library defaultLibrary = DEFAULT_LIBRARIES.get(SchemaVersion.DRAFTV4);
 
+
+    long cacheMaxSize = -1;
+    
     /**
      * Whether to use {@code format} ({@code true} by default)
      */
@@ -121,6 +125,7 @@ public final class ValidationConfigurationBuilder
         useFormat = cfg.useFormat;
         syntaxMessages = cfg.syntaxMessages;
         validationMessages = cfg.validationMessages;
+        cacheMaxSize = cfg.cacheMaxSize;
     }
 
     /**
@@ -188,6 +193,18 @@ public final class ValidationConfigurationBuilder
         defaultLibrary = library;
         return this;
     }
+    
+    /**
+     * Set cache max size
+     * 
+     * @param cacheMaxSize
+     * @return this
+     */
+    public ValidationConfigurationBuilder cacheMaxSize(long cacheMaxSize) 
+    {
+		this.cacheMaxSize = cacheMaxSize;
+        return this;
+	}
 
     /**
      * Tell whether the resulting configuration has support for {@code format}

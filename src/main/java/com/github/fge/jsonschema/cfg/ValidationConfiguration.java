@@ -66,6 +66,9 @@ public final class ValidationConfiguration
      */
     final Library defaultLibrary;
 
+    
+    long cacheMaxSize = -1;
+    
     /**
      * Whether to use {@code format} in the resulting factory
      */
@@ -115,6 +118,7 @@ public final class ValidationConfiguration
         useFormat = builder.useFormat;
         syntaxMessages = builder.syntaxMessages;
         validationMessages = builder.validationMessages;
+        cacheMaxSize = builder.cacheMaxSize;
     }
 
     /**
@@ -136,6 +140,16 @@ public final class ValidationConfiguration
     {
         return defaultLibrary;
     }
+
+    /**
+     * Return the maximum amount of elements that the cache can hold.
+     * 
+     * @return the max size
+     */
+    public long getCacheMaxSize() 
+    {
+		return cacheMaxSize;
+	}
 
     /**
      * Whether {@code format} should be used
